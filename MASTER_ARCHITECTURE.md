@@ -177,7 +177,7 @@ add_action('woocommerce_before_shop_loop_item_title', [$this, 'render_slider'], 
 
 | Version | Status | Description |
 |---|---|---|
-| `0.1.0` | 🔄 In Progress | Bootstrap + file structure + core slider |
+| `0.1.1` | ✅ Done | Bootstrap — main plugin file + WCPLS_Core singleton |
 | `0.2.0` | 📋 Planned | CSS refinement + touch/swipe optimization |
 | `0.3.0` | 📋 Planned | Settings page (WP Admin) |
 | `0.4.0` | 📋 Planned | Elementor Loop Template compatibility |
@@ -232,6 +232,9 @@ type: feat | fix | style | refactor | docs | chore
 
 | Date | Decision | Reason |
 |---|---|---|
+| 2026-04-07 | `WCPLS_Core` ใช้ singleton pattern (final class + private constructor) | ป้องกัน instantiate ซ้ำ และปลอดภัยกับ `plugins_loaded` hook |
+| 2026-04-07 | `load_dependencies()` ใช้ `class_exists()` guard ก่อน instantiate | ให้ Part 2+ (Assets/Slider) ทำงานได้แบบ incremental โดยไม่ fatal error |
+| 2026-04-07 | `is_woocommerce_active()` รองรับ Multisite network activation | ครอบคลุม setup แบบ Multisite ด้วย `active_sitewide_plugins` |
 | 2025-04-07 | ใช้ Swiper.js 11.x | เบา, touch-friendly, ไม่ต้องพึ่ง jQuery |
 | 2025-04-07 | Bundle vendor แทน CDN | ไม่พึ่ง internet ขณะ load, GDPR-friendly |
 | 2025-04-07 | ใช้ hook `woocommerce_before_shop_loop_item_title` | Standard WC hook, ทำงานกับ Elementor Loop ได้ |
