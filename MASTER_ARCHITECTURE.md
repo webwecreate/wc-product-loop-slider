@@ -1,9 +1,9 @@
 # MASTER ARCHITECTURE
 # Plugin: WC Product Loop Slider
 # Slug: wc-product-loop-slider
-# Version: 0.1.0
+# Version: 0.2.0
 # Last Updated: 2025-04-07
-# Author: [Your Name]
+# Author: webwecreate.com
 
 ---
 
@@ -183,7 +183,7 @@ add_action('woocommerce_before_shop_loop_item_title', [$this, 'render_slider'], 
 | `0.1.1` | ✅ Done | Bootstrap — main plugin file + WCPLS_Core singleton (Part 1)  |
 | `0.1.2` | ✅ DoneAssets enqueue — WCPLS_Assets, CSS/JS skeletons (Part 2) |
 | `0.1.3` | ✅ Done | Slider class + loop template (Part 3) |
-| `0.2.0` | 📋 Planned | CSS refinement + touch/swipe optimization |
+| `0.2.0` | ✅ Done | Frontend CSS — wcpls-front.css (Part 4) |
 | `0.3.0` | 📋 Planned | Settings page (WP Admin) |
 | `0.4.0` | 📋 Planned | Elementor Loop Template compatibility |
 | `1.0.0` | 📋 Planned | Stable release |
@@ -236,7 +236,9 @@ type: feat | fix | style | refactor | docs | chore
 ## Section 10: Notes & Decisions Log
 
 | Date | Decision | Reason |
-|---|---|---|
+| 2026-04-07 | ใช้ `aspect-ratio` แทน `padding-top` hack | CSS modern, readable, รองรับ block themes |
+| 2026-04-07 | ซ่อน nav arrows ด้วย `opacity` + `pointer-events` | ให้ transition ทำงานได้ (display:none ทำไม่ได้) |
+| 2026-04-07 | `isolation: isolate` บน `.wcpls-slider-wrapper` | ป้องกัน z-index leak กับ theme อื่น |
 | 2026-04-07 | `WCPLS_Core` ใช้ singleton pattern (final class + private constructor) | ป้องกัน instantiate ซ้ำ และปลอดภัยกับ `plugins_loaded` hook |
 | 2026-04-07 | `load_dependencies()` ใช้ `class_exists()` guard ก่อน instantiate | ให้ Part 2+ (Assets/Slider) ทำงานได้แบบ incremental โดยไม่ fatal error |
 | 2026-04-07 | `is_woocommerce_active()` รองรับ Multisite network activation | ครอบคลุม setup แบบ Multisite ด้วย `active_sitewide_plugins` |

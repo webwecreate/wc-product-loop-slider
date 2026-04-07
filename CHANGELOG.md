@@ -6,6 +6,25 @@ All notable changes to this project will be documented in this file.
 ห้ามเขียนทับ — ให้เพิ่มบันทึกใหม่ด้านบนเสมอ
 
 ---
+## [0.2.0] — 2026-04-07
+
+### Added
+- `assets/css/wcpls-front.css` — Frontend stylesheet เต็มรูปแบบ แทน skeleton จาก v0.1.2:
+  - **Section 1 — CSS Custom Properties**: `--wcpls-aspect-ratio`, `--wcpls-dot-*`,
+    `--wcpls-nav-*`, `--wcpls-transition` รองรับ override จาก child theme
+  - **Section 2 — Slider Container**: `.wcpls-slider-wrapper` ใช้ `aspect-ratio: 1/1`
+    เป็น default, `overflow: hidden`, `position: relative`, `isolation: isolate`
+  - **Section 3 — Swiper Slide & Images**: `object-fit: cover`, `width/height: 100%`,
+    subtle zoom on active slide เมื่อ hover
+  - **Section 4 — Pagination Dots**: absolute position บนรูป, bottom-centred,
+    `box-shadow` ให้มองเห็นได้ทั้ง background สว่าง/มืด
+  - **Section 5 — Navigation Arrows**: ซ่อนโดย default, แสดง + slide-in เมื่อ hover บน card,
+    ซ่อนอัตโนมัติเมื่อมีรูปเดียว (`swiper-button-disabled`)
+  - **Section 6 — Accessibility**: `prefers-reduced-motion` และ `focus-visible`
+    สำหรับ keyboard navigation
+
+
+---
 ## [0.1.3] — 2026-04-07
 
 ### Added
