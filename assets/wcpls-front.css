@@ -1,0 +1,55 @@
+/*!
+ * wcpls-front.css
+ *
+ * @package     WC_Product_Loop_Slider
+ * @version     0.1.2
+ * @since       0.1.2
+ * @license     GPL-2.0-or-later
+ *
+ * Frontend styles for WC Product Loop Slider.
+ * Swiper base styles are loaded separately via swiper-bundle.min.css.
+ *
+ * Table of Contents:
+ *   1. Slider wrapper
+ *   2. Swiper container overrides
+ *   3. Pagination dots
+ *   4. Navigation arrows (hidden by default)
+ *   5. Responsive / mobile adjustments
+ */
+
+
+/* =============================================================================
+   1. Slider wrapper
+   Wraps the entire Swiper instance inside the WooCommerce product card.
+============================================================================= */
+
+/* styles will be added in v0.2.0 */
+
+
+/* =============================================================================
+   2. Swiper container overrides
+   Constrain the slider to the product card thumbnail area.
+============================================================================= */
+
+/* styles will be added in v0.2.0 */
+
+
+/* =============================================================================
+   3. Pagination dots
+============================================================================= */
+
+/* styles will be added in v0.2.0 */
+
+
+/* =============================================================================
+   4. Navigation arrows (hidden by default — enabled via wcplsConfig.navigation)
+============================================================================= */
+
+/* styles will be added in v0.2.0 */
+
+
+/* =============================================================================
+   5. Responsive / mobile adjustments
+============================================================================= */
+
+/* styles will be added in v0.2.0 */
