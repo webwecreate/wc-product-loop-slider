@@ -5,6 +5,29 @@
 All notable changes to this project will be documented in this file.
 ห้ามเขียนทับ — ให้เพิ่มบันทึกใหม่ด้านบนเสมอ
 
+---
+## [0.1.2] — 2026-04-07
+
+### Added
+- `includes/class-wcpls-assets.php` — class `WCPLS_Assets` with:
+  - `__construct()` — hooks `enqueue()` into `wp_enqueue_scripts`
+  - `enqueue()` — loads Swiper CSS/JS (vendor bundle) + `wcpls-front.css` /
+    `wcpls-front.js` only on `is_shop()`, `is_product_category()`,
+    `is_product_tag()`, `is_product_taxonomy()` pages
+  - `is_product_archive()` — private helper for load condition
+  - `get_js_config()` — returns PHP→JS config array via `wp_localize_script`
+    (`window.wcplsConfig`); mirrors planned v0.3.0 settings options
+- `assets/css/wcpls-front.css` — skeleton with 5-section TOC; styles deferred to v0.2.0
+- `assets/js/wcpls-front.js` — skeleton with 4-section TOC; Swiper init deferred to v0.2.0
+
+### Notes
+- Swiper loaded from `assets/vendor/swiper/swiper-bundle.min.css|js` (no CDN)
+- Swiper handle: `wcpls-swiper` (hardcoded version `11.0.0`)
+- Plugin handle: `wcpls-front` (version from `WCPLS_VERSION` constant)
+- JS config object `wcplsConfig` already exposes `pagination`, `navigation`,
+  `autoplay`, `autoplayDelay` — ready for Settings page wiring in v0.3.0
+
+---
 ## [0.1.1] — 2026-04-07
 
 ### Added

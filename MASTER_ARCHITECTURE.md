@@ -117,6 +117,8 @@ wc-product-loop-slider/
 | `WCPLS_Assets` | class | Asset management |
 | `__construct()` | method | Hook into `wp_enqueue_scripts` |
 | `enqueue()` | method | Enqueue swiper + plugin CSS/JS on shop/archive pages |
+| `is_product_archive()`  | method  | (private)Returns bool — checks shop/category/tag/taxonomy |
+| `get_js_config()` | method  | (private)Returns config array for wp_localize_script  |
 
 ### `class-wcpls-slider.php`
 | Item | Type | Description |
@@ -178,6 +180,7 @@ add_action('woocommerce_before_shop_loop_item_title', [$this, 'render_slider'], 
 | Version | Status | Description |
 |---|---|---|
 | `0.1.1` | ✅ Done | Bootstrap — main plugin file + WCPLS_Core singleton |
+| `0.1.2` |✅ DoneAssets enqueue — WCPLS_Assets, CSS/JS skeletons
 | `0.2.0` | 📋 Planned | CSS refinement + touch/swipe optimization |
 | `0.3.0` | 📋 Planned | Settings page (WP Admin) |
 | `0.4.0` | 📋 Planned | Elementor Loop Template compatibility |
