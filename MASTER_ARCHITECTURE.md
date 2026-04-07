@@ -1,7 +1,7 @@
 # MASTER ARCHITECTURE
 # Plugin: WC Product Loop Slider
 # Slug: wc-product-loop-slider
-# Version: 0.2.0
+# Version: 0.2.1
 # Last Updated: 2025-04-07
 # Author: webwecreate.com
 
@@ -184,6 +184,7 @@ add_action('woocommerce_before_shop_loop_item_title', [$this, 'render_slider'], 
 | `0.1.2` | ✅ DoneAssets enqueue — WCPLS_Assets, CSS/JS skeletons (Part 2) |
 | `0.1.3` | ✅ Done | Slider class + loop template (Part 3) |
 | `0.2.0` | ✅ Done | Frontend CSS — wcpls-front.css (Part 4) |
+| `0.2.1` | ✅ Done | Frontend JS — Full Swiper init, loop logic, swipe protection (Part 5) |
 | `0.3.0` | 📋 Planned | Settings page (WP Admin) |
 | `0.4.0` | 📋 Planned | Elementor Loop Template compatibility |
 | `1.0.0` | 📋 Planned | Stable release |

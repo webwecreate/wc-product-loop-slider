@@ -4,6 +4,29 @@
 
 All notable changes to this project will be documented in this file.
 ห้ามเขียนทับ — ให้เพิ่มบันทึกใหม่ด้านบนเสมอ
+---
+## [0.2.1] — 2026-04-07
+
+### Added / Changed
+
+- `assets/js/wcpls-front.js` — Full Swiper init implementation (Part 5):
+  - `createSlider( el )` — factory function; initialises one Swiper instance per
+    `.wcpls-slider` element; guards against double-init via `el.swiper` check
+  - `loop: true` when `slideCount > 1`; `loop: false` for single-image cards
+    (prevents Swiper slide-duplication artefacts)
+  - Pagination dots enabled automatically when `slideCount > 1` and
+    `wcplsConfig.pagination !== false`
+  - `preventClicks: true` + `preventClicksPropagation: true` — blocks
+    click-through to product page during a swipe gesture
+  - `touchStartPreventDefault: false` — preserves native vertical page scroll
+    on mobile while Swiper still handles horizontal swipe
+  - Navigation arrows and autoplay wired to `wcplsConfig` (off by default;
+    ready for v0.3.0 Settings page)
+  - `initAllSliders()` runs on `DOMContentLoaded`
+  - `reinitNewSliders()` hooked to `wc_fragments_loaded`,
+    `wc_fragments_refreshed`, and custom `wcpls_reinit` jQuery event
+  - `window.wcplsReinit` exposed as public API for themes/plugins
+
 
 ---
 ## [0.2.0] — 2026-04-07
