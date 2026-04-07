@@ -6,6 +6,28 @@ All notable changes to this project will be documented in this file.
 ห้ามเขียนทับ — ให้เพิ่มบันทึกใหม่ด้านบนเสมอ
 
 ---
+## [0.1.3] — 2026-04-07
+
+### Added
+- `includes/class-wcpls-slider.php` — `WCPLS_Slider` class with:
+  - `hook_into_loop()` — removes `woocommerce_template_loop_product_thumbnail`
+    and registers `render_slider` on `woocommerce_before_shop_loop_item_title` (priority 10)
+  - `get_image_ids( int $product_id )` — returns deduplicated array of
+    [featured image, ...gallery images] attachment IDs
+  - `render_slider()` — resolves current product, calls `get_image_ids()`,
+    locates template; falls back to WC default thumbnail when no images or template missing
+  - `locate_template( string $file )` — supports theme override at
+    `{theme}/wc-product-loop-slider/{file}` before falling back to plugin bundled template
+- `templates/loop-slider.php` — Swiper-compatible HTML template:
+  - Outputs `.wcpls-slider.swiper` > `.swiper-wrapper` > `.swiper-slide` structure
+  - Uses `wp_get_attachment_image()` for native srcset/sizes support
+  - All images use `loading="lazy"` + `decoding="async"`
+  - `.swiper-pagination` rendered only when slide count > 1
+  - Action hooks: `wcpls_before_slider`, `wcpls_after_slider`,
+    `wcpls_before_slide`, `wcpls_after_slide`
+  - Filter: `wcpls_image_size` (default: `woocommerce_thumbnail`)
+
+---
 ## [0.1.2] — 2026-04-07
 
 ### Added

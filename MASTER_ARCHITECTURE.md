@@ -179,8 +179,10 @@ add_action('woocommerce_before_shop_loop_item_title', [$this, 'render_slider'], 
 
 | Version | Status | Description |
 |---|---|---|
-| `0.1.1` | ✅ Done | Bootstrap — main plugin file + WCPLS_Core singleton |
-| `0.1.2` |✅ DoneAssets enqueue — WCPLS_Assets, CSS/JS skeletons
+| `0.1.0` | ✅ Done | Master Architecture + CHANGELOG init |
+| `0.1.1` | ✅ Done | Bootstrap — main plugin file + WCPLS_Core singleton (Part 1)  |
+| `0.1.2` | ✅ DoneAssets enqueue — WCPLS_Assets, CSS/JS skeletons (Part 2) |
+| `0.1.3` | ✅ Done | Slider class + loop template (Part 3) |
 | `0.2.0` | 📋 Planned | CSS refinement + touch/swipe optimization |
 | `0.3.0` | 📋 Planned | Settings page (WP Admin) |
 | `0.4.0` | 📋 Planned | Elementor Loop Template compatibility |
