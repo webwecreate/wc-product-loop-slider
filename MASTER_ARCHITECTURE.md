@@ -185,6 +185,7 @@ add_action('woocommerce_before_shop_loop_item_title', [$this, 'render_slider'], 
 | `0.1.3` | ✅ Done | Slider class + loop template (Part 3) |
 | `0.2.0` | ✅ Done | Frontend CSS — wcpls-front.css (Part 4) |
 | `0.2.1` | ✅ Done | Frontend JS — Full Swiper init, loop logic, swipe protection (Part 5) |
+| `0.2.2` | ✅ Done | PC hover arrows + mobile dots UX + dot position fix (Part 6) |
 | `0.3.0` | 📋 Planned | Elementor Loop Template compatibility (Part 7)|
 | `0.4.0` | 📋 Planned | Settings page (WP Admin) (Part 8) |
 | `1.0.0` | 📋 Planned | Stable release |
@@ -239,6 +240,8 @@ type: feat | fix | style | refactor | docs | chore
 ## Section 10: Notes & Decisions Log
 
 | Date | Decision | Reason |
+| 2026-04-08 | ซ่อน dots บน PC ด้วย `@media (hover: hover)` | ไม่ต้องใช้ JS detect device |
+| 2026-04-08 | Navigation arrows เปิดเสมอ (CSS controls visibility) | ลด config complexity |
 | 2026-04-07 | ใช้ `aspect-ratio` แทน `padding-top` hack | CSS modern, readable, รองรับ block themes |
 | 2026-04-07 | ซ่อน nav arrows ด้วย `opacity` + `pointer-events` | ให้ transition ทำงานได้ (display:none ทำไม่ได้) |
 | 2026-04-07 | `isolation: isolate` บน `.wcpls-slider-wrapper` | ป้องกัน z-index leak กับ theme อื่น |

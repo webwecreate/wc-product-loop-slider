@@ -2,7 +2,7 @@
  * WC Product Loop Slider — Frontend Styles
  *
  * @package    WC_Product_Loop_Slider
- * @version    0.2.0
+ * @version    0.2.1
  * @since      0.1.2
  * @last-updated 2026-04-07
  *
@@ -30,7 +30,7 @@
     --wcpls-dot-color:          rgba(255, 255, 255, 0.55);
     --wcpls-dot-color-active:   #ffffff;
     --wcpls-dot-shadow:         0 1px 3px rgba(0, 0, 0, 0.45);
-    --wcpls-dot-bottom:         10px;
+    --wcpls-dot-bottom:         20px;
 
     /* Navigation arrows */
     --wcpls-nav-size:           30px;
@@ -215,6 +215,16 @@
     .wcpls-slider-wrapper .swiper-pagination-bullet {
         transition: none;
     }
+}
+
+/* PC: hide pagination dots — arrows handle navigation instead */
+@media (hover: hover) and (pointer: fine) {
+    .wcpls-slider-wrapper .swiper-pagination {
+        opacity: 0;
+        transition: opacity 0.22s ease;
+    }
+    /* Optional: fade dots in on hover for PC too */
+    /* .wcpls-slider-wrapper:hover .swiper-pagination { opacity: 1; } */
 }
 
 /* Focus ring for keyboard navigation on pagination bullets */

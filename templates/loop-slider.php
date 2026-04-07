@@ -4,9 +4,9 @@
  *
  * @package    WC Product Loop Slider
  * @file       templates/loop-slider.php
- * @version    0.1.3
+ * @version    0.2.2
  * @since      0.1.2
- * @last-updated 2026-04-07
+ * @last-updated 2026-04-08
  *
  * Variables available (set by WCPLS_Slider::render_slider()):
  *  @var int[]  $image_ids   Ordered array of WP attachment IDs.
@@ -114,6 +114,8 @@ do_action( 'wcpls_before_slider', $product_id, $image_ids );
 
 	<?php if ( count( $image_ids ) > 1 ) : ?>
 		<div class="swiper-pagination wcpls-pagination" aria-hidden="true"></div>
+		<button class="swiper-button-prev wcpls-nav-prev" aria-label="<?php esc_attr_e( 'Previous image', 'wc-product-loop-slider' ); ?>"></button>
+		<button class="swiper-button-next wcpls-nav-next" aria-label="<?php esc_attr_e( 'Next image', 'wc-product-loop-slider' ); ?>"></button>
 	<?php endif; ?>
 
 </div><!-- .wcpls-slider -->

@@ -69,13 +69,14 @@
 				: false,
 
 			// ── Navigation arrows ─────────────────────────────────────────────
-			// Off by default — wired to wcplsConfig.navigation (v0.3.0 settings)
-			navigation: config.navigation
-				? {
-					nextEl: el.querySelector( '.swiper-button-next' ),
-					prevEl: el.querySelector( '.swiper-button-prev' ),
-				  }
-				: false,
+		// Always enabled for multi-slide — CSS controls show/hide on hover.
+		// On mobile (no hover), arrows stay hidden via CSS opacity: 0.
+		navigation: enableLoop
+			? {
+				nextEl: el.querySelector( '.swiper-button-next' ),
+				prevEl: el.querySelector( '.swiper-button-prev' ),
+			  }
+			: false,
 
 			// ── Autoplay ──────────────────────────────────────────────────────
 			// Off by default — wired to wcplsConfig.autoplay (v0.3.0 settings)

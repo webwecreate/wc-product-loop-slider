@@ -4,6 +4,23 @@
 
 All notable changes to this project will be documented in this file.
 ห้ามเขียนทับ — ให้เพิ่มบันทึกใหม่ด้านบนเสมอ
+
+---
+## [0.2.2] — 2026-04-08
+
+### Changed
+- `assets/css/wcpls-front.css` (0.2.0 → 0.2.2):
+  - ยก `--wcpls-dot-bottom` จาก `10px` เป็น `20px`
+  - เพิ่ม `@media (hover: hover) and (pointer: fine)` — ซ่อน dots บน PC อัตโนมัติ
+- `assets/js/wcpls-front.js`:
+  - Navigation arrows เปิดเสมอเมื่อ `slideCount > 1` แทนขึ้นกับ `wcplsConfig.navigation`
+- `templates/loop-slider.php` (0.1.3 → 0.2.2):
+  - เพิ่ม `.swiper-button-prev` / `.swiper-button-next` (`<button>`) พร้อม `aria-label`
+
+### UX Behaviour
+- **Mobile**: dots subtle overlay บนรูป
+- **PC**: dots ซ่อน, ลูกศรแสดงเมื่อ hover บน card
+
 ---
 ## [0.2.1] — 2026-04-07
 
