@@ -181,12 +181,12 @@ add_action('woocommerce_before_shop_loop_item_title', [$this, 'render_slider'], 
 |---|---|---|
 | `0.1.0` | ✅ Done | Master Architecture + CHANGELOG init |
 | `0.1.1` | ✅ Done | Bootstrap — main plugin file + WCPLS_Core singleton (Part 1)  |
-| `0.1.2` | ✅ DoneAssets enqueue — WCPLS_Assets, CSS/JS skeletons (Part 2) |
+| `0.1.2` | ✅ Done |  Assets enqueue — WCPLS_Assets, CSS/JS skeletons (Part 2) |
 | `0.1.3` | ✅ Done | Slider class + loop template (Part 3) |
 | `0.2.0` | ✅ Done | Frontend CSS — wcpls-front.css (Part 4) |
 | `0.2.1` | ✅ Done | Frontend JS — Full Swiper init, loop logic, swipe protection (Part 5) |
-| `0.3.0` | 📋 Planned | Settings page (WP Admin) |
-| `0.4.0` | 📋 Planned | Elementor Loop Template compatibility |
+| `0.3.0` | 📋 Planned | Elementor Loop Template compatibility (Part 7)|
+| `0.4.0` | 📋 Planned | Settings page (WP Admin) (Part 8) |
 | `1.0.0` | 📋 Planned | Stable release |
 
 ---
@@ -231,6 +231,8 @@ type: feat | fix | style | refactor | docs | chore
 | Frontend JS | `assets/js/wcpls-front.js` |
 | Settings page | `class-wcpls-settings.php` |
 | GitHub Actions | `.github/workflows/deploy.yml` |
+| Elementor compatibility | `class-wcpls-elementor.php` |
+| Settings page           | `class-wcpls-settings.php`  |
 
 ---
 
