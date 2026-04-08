@@ -6,6 +6,15 @@ All notable changes to this project will be documented in this file.
 ห้ามเขียนทับ — ให้เพิ่มบันทึกใหม่ด้านบนเสมอ
 
 ---
+## [0.2.3] — 2026-04-08
+
+### Fixed
+- `templates/loop-slider.php` (0.2.2 → 0.2.3):
+  - เพิ่ม `<div class="wcpls-slider-wrapper">` ครอบ `.wcpls-slider.swiper`
+  - แก้ bug ที่ CSS selectors ทั้งหมดไม่ทำงาน เพราะ HTML ไม่มี `.wcpls-slider-wrapper`
+  - ส่งผลให้ arrow hover, dot position, dot hide บน PC ทำงานถูกต้องทั้งหมด
+
+---
 ## [0.2.2] — 2026-04-08
 
 ### Changed
