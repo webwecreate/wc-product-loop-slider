@@ -52,6 +52,11 @@
 			slidesPerView: 1,
 			spaceBetween:  0,
 
+			// ── Observer (Elementor Loop Grid fix) ───────────────────────────
+			// Watches for container resize after Elementor calculates columns
+			observer:       true,
+			observeParents: true,
+
 			// ── Touch / swipe ─────────────────────────────────────────────────
 			touchStartPreventDefault:  false,
 			preventClicks:             true,
