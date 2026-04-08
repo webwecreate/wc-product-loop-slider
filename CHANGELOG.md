@@ -4,6 +4,12 @@
 
 All notable changes to this project will be documented in this file.
 ห้ามเขียนทับ — ให้เพิ่มบันทึกใหม่ด้านบนเสมอ
+---
+## [0.2.4] — 2026-04-08
+
+### Fixed
+- `assets/css/wcpls-front.css` (0.2.1 → 0.2.2):
+  - Fix: prev-next button styling
 
 ---
 ## [0.2.3] — 2026-04-08

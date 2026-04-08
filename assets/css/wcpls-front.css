@@ -2,7 +2,7 @@
  * WC Product Loop Slider — Frontend Styles
  *
  * @package    WC_Product_Loop_Slider
- * @version    0.2.1
+ * @version    0.2.2
  * @since      0.1.2
  * @last-updated 2026-04-07
  *
@@ -162,6 +162,8 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    border-color:transparent;
+    padding:5px;
 
     /* Hidden by default; revealed on wrapper hover */
     opacity: 0;
