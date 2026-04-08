@@ -4,6 +4,21 @@
 
 All notable changes to this project will be documented in this file.
 ห้ามเขียนทับ — ให้เพิ่มบันทึกใหม่ด้านบนเสมอ
+
+---
+
+## [MASTER UPDATE] — 2026-04-08
+
+### Changed (MASTER_ARCHITECTURE.md only — no plugin code changed)
+- Section 1: เพิ่มอธิบาย 3 รูปแบบการแสดงผลที่รองรับ
+- Section 2: เพิ่มไฟล์ใหม่ `class-wcpls-elementor.php`, `class-wcpls-widget.php`, `elementor-slider.php`
+- Section 3: เพิ่ม class registry สำหรับ `WCPLS_Elementor` และ `WCPLS_Widget`
+- Section 4: เพิ่ม Elementor Hook Strategy
+- Section 5: อัปเดต Load Condition ให้ครอบคลุม Elementor pages
+- Section 7: แยก v0.3.0 เป็น 7a (0.3.0) และ 7b (0.3.1) / เลื่อน Settings เป็น v0.4.0
+- Section 9: อัปเดต Chat Splitting Guide เพิ่ม Part 7a, 7b, 8 พร้อม version
+- Section 10: เพิ่ม decisions log สำหรับการตัดสินใจใหม่
+
 ---
 ## [0.2.4] — 2026-04-08
 
@@ -59,7 +74,6 @@ All notable changes to this project will be documented in this file.
     `wc_fragments_refreshed`, and custom `wcpls_reinit` jQuery event
   - `window.wcplsReinit` exposed as public API for themes/plugins
 
-
 ---
 ## [0.2.0] — 2026-04-07
 
@@ -77,7 +91,6 @@ All notable changes to this project will be documented in this file.
     ซ่อนอัตโนมัติเมื่อมีรูปเดียว (`swiper-button-disabled`)
   - **Section 6 — Accessibility**: `prefers-reduced-motion` และ `focus-visible`
     สำหรับ keyboard navigation
-
 
 ---
 ## [0.1.3] — 2026-04-07
@@ -137,9 +150,10 @@ All notable changes to this project will be documented in this file.
   - `check_woocommerce()` — hooks admin notice when WooCommerce is missing
   - `admin_notice_missing_woocommerce()` — outputs dismissible error notice
   - `is_woocommerce_active()` — supports single-site and Multisite network activation
----
 
+---
 ## [0.1.0] — 2025-04-07
+
 ### Added
 - สร้าง Master Architecture document (MASTER_ARCHITECTURE.md)
 - กำหนดโครงสร้างไฟล์ทั้งหมด
