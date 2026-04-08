@@ -3,15 +3,16 @@
  * Class WCPLS_Assets
  *
  * @package     WC_Product_Loop_Slider
- * @version     0.1.2
+ * @version     0.3.0
  * @since       0.1.2
- * @author      [Your Name]
+ * @author      webwecreate.com
  * @license     GPL-2.0-or-later
  *
  * Handles enqueueing of all frontend scripts and styles.
  * Swiper.js is loaded from bundled vendor assets (no CDN dependency).
  *
  * Load condition: is_shop() | is_product_category() | is_product_taxonomy()
+ *                 | Elementor-built pages (0.3.0+)
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -30,18 +31,11 @@ class WCPLS_Assets {
 	/**
 	 * Enqueue frontend assets on WooCommerce archive pages only.
 	 *
-	 * Loads:
-	 *   1. Swiper CSS  (vendor bundle)
-	 *   2. Swiper JS   (vendor bundle)
-	 *   3. wcpls-front.css (plugin styles)
-	 *   4. wcpls-front.js  (plugin Swiper init)
-	 *
-	 * @since 0.1.2
+	 * @since  0.1.2
 	 * @return void
 	 */
 	public function enqueue(): void {
 
-		// Only load on WooCommerce shop / category / taxonomy pages.
 		if ( ! $this->is_product_archive() ) {
 			return;
 		}
@@ -62,25 +56,24 @@ class WCPLS_Assets {
 			WCPLS_VERSION
 		);
 
-		// 3. Swiper JS — vendor bundle (deferred, no jQuery dependency).
+		// 3. Swiper JS — vendor bundle.
 		wp_enqueue_script(
 			'wcpls-swiper',
 			WCPLS_URL . 'assets/vendor/swiper/swiper-bundle.min.js',
 			[],
 			'11.0.0',
-			true  // load in footer
+			true
 		);
 
-		// 4. Plugin frontend JS — depends on Swiper.
+		// 4. Plugin frontend JS.
 		wp_enqueue_script(
 			'wcpls-front',
 			WCPLS_URL . 'assets/js/wcpls-front.js',
 			[ 'wcpls-swiper' ],
 			WCPLS_VERSION,
-			true  // load in footer
+			true
 		);
 
-		// Pass PHP config to JS via wp_localize_script (extendable in v0.3.0).
 		wp_localize_script(
 			'wcpls-front',
 			'wcplsConfig',
@@ -93,21 +86,35 @@ class WCPLS_Assets {
 	// -------------------------------------------------------------------------
 
 	/**
-	 * Check whether the current page is a WooCommerce product archive.
+	 * Check whether the current page should load WCPLS assets.
+	 *
+	 * Covers:
+	 *   - Standard WooCommerce shop / category / tag / taxonomy archive pages.
+	 *   - [0.3.0] Singular pages built with Elementor (Loop Builder support).
 	 *
 	 * @since  0.1.2
 	 * @return bool
 	 */
 	private function is_product_archive(): bool {
-		return is_shop()
-			|| is_product_category()
-			|| is_product_tag()
-			|| is_product_taxonomy();
+
+		// Standard WooCommerce archive pages.
+		if ( is_shop() || is_product_category() || is_product_tag() || is_product_taxonomy() ) {
+			return true;
+		}
+
+		// [0.3.0] Elementor-built singular pages (e.g. custom Loop Builder pages).
+		if ( class_exists( 'WCPLS_Elementor' )
+			&& WCPLS_Elementor::is_elementor_active()
+			&& WCPLS_Elementor::is_elementor_built_page()
+		) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
 	 * Build the JS config object passed via wp_localize_script.
-	 * Values here mirror the planned Settings options (Section 6 of Master).
 	 *
 	 * @since  0.1.2
 	 * @return array<string, mixed>
@@ -115,10 +122,10 @@ class WCPLS_Assets {
 	private function get_js_config(): array {
 		return [
 			'version'       => WCPLS_VERSION,
-			'pagination'    => true,   // wcpls_show_pagination  (future option)
-			'navigation'    => false,  // wcpls_show_navigation  (future option)
-			'autoplay'      => false,  // wcpls_autoplay         (future option)
-			'autoplayDelay' => 3000,   // wcpls_autoplay_delay   (future option)
+			'pagination'    => true,
+			'navigation'    => false,
+			'autoplay'      => false,
+			'autoplayDelay' => 3000,
 		];
 	}
 }
