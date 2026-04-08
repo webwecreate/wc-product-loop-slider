@@ -36,6 +36,11 @@ class WCPLS_Elementor {
 			return;
 		}
 
+		add_action(
+			'elementor/widgets/register',
+			[ $this, 'register_widgets' ]
+		);
+
 		// Load Swiper inside the Elementor editor canvas.
 		add_action(
 			'elementor/editor/after_enqueue_scripts',
@@ -85,6 +90,18 @@ class WCPLS_Elementor {
 		return 'builder' === get_post_meta( $post_id, '_elementor_edit_mode', true );
 	}
 
+	/**
+	 * Register WCPLS_Widget with Elementor's widget manager.
+	 *
+	 * @since  0.3.0
+	 * @param  \Elementor\Widgets_Manager $widgets_manager
+	 * @return void
+	 */
+	public function register_widgets( \Elementor\Widgets_Manager $widgets_manager ): void {
+		require_once WCPLS_PATH . 'includes/widgets/class-wcpls-widget.php';
+		$widgets_manager->register( new WCPLS_Widget() );
+	}
+	
 	// -------------------------------------------------------------------------
 	// Editor assets
 	// -------------------------------------------------------------------------
