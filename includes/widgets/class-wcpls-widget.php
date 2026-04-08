@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: WC Product Loop Slider
- * File:        includes/widgets/class-wcpls-widget.php
- * Version:     0.3.1
- * Description: Elementor Widget — WCPLS_Widget extends \Elementor\Widget_Base
- * Author:      webwecreate.com
+ * Elementor Widget — WCPLS_Widget extends \Elementor\Widget_Base
+ *
+ * @package WC_Product_Loop_Slider
+ * @version 0.3.1
+ * @since   0.3.1
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

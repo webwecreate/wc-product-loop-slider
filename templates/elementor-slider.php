@@ -1,10 +1,6 @@
 <?php
 /**
- * Plugin Name: WC Product Loop Slider
- * File:        templates/elementor-slider.php
- * Version:     0.3.1
- * Description: Slider HTML template for Elementor Widget (WCPLS_Widget::render)
- * Author:      webwecreate.com
+ * Slider HTML template for Elementor Widget (WCPLS_Widget::render)
  *
  * Variables available (passed via extract in WCPLS_Widget::render):
  *   @var int[]  $image_ids   Array of WP attachment IDs (featured + gallery).
@@ -13,6 +9,10 @@
  *
  * Theme override:
  *   Copy this file to: {theme}/wc-product-loop-slider/elementor-slider.php
+ *
+ * @package WC_Product_Loop_Slider
+ * @version 0.3.1
+ * @since   0.3.1
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
