@@ -148,12 +148,20 @@
 				}
 
 				$element[0].querySelectorAll( SLIDER_SELECTOR ).forEach( function ( el ) {
-					// Destroy stale instance before re-init
 					if ( el.swiper ) {
 						el.swiper.destroy( true, true );
 						delete el.swiper;
 					}
-					createSlider( el );
+
+					const swiper = createSlider( el );
+
+					// Force recalculate after Elementor finishes layout
+					if ( swiper ) {
+						requestAnimationFrame( function () {
+							swiper.update();        // ← เพิ่ม
+							swiper.updateSize();    // ← เพิ่ม
+						} );
+					}
 				} );
 			}
 		);
