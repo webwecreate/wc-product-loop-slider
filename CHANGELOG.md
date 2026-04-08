@@ -7,6 +7,41 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.3.0] — 2026-04-08
+
+### Added
+
+* `includes/class-wcpls-elementor.php` — `WCPLS_Elementor` class with:
+  + `is_elementor_active()` — static check via `ELEMENTOR_VERSION` constant
+    และ `\Elementor\Plugin` class guard
+  + `is_elementor_built_page()` — static check via `_elementor_edit_mode`
+    post meta; lightweight, no Documents API dependency
+  + `enqueue_editor_assets()` — hooks `elementor/editor/after_enqueue_scripts`;
+    loads Swiper + wcpls-front CSS/JS inside Elementor editor canvas
+  + `force_enqueue_assets()` — hooks `elementor/frontend/after_enqueue_scripts`;
+    force-loads full asset stack on Elementor-built pages; guards
+    `wp_localize_script` with `wp_script_is( 'wcpls-front', 'done' )`
+  + Constructor bails silently when Elementor inactive — zero overhead
+
+### Modified
+
+* `includes/class-wcpls-core.php`:
+  + `load_dependencies()` — เพิ่ม `class-wcpls-elementor.php` ใน file list
+  + เพิ่ม `WCPLS_Elementor` instantiation block (with `class_exists` guard)
+* `includes/class-wcpls-assets.php`:
+  + `is_product_archive()` — เพิ่ม Elementor branch สำหรับ
+    singular pages ที่ใช้ Loop Builder นอก WC archive routes
+    (ใช้ `class_exists` guard ป้องกัน fatal error)
+
+### Notes
+
+* `wp_enqueue_*` idempotent — ปลอดภัยเมื่อ WCPLS_Assets และ
+  WCPLS_Elementor เรียก handle เดียวกันบนหน้าที่เป็นทั้ง WC archive
+  และ Elementor-built page
+* Elementor Widget (Part 7b / v0.3.1) ยังไม่ implement
+
+---
+
 ## [MASTER UPDATE] — 2026-04-08
 
 ### Changed (MASTER_ARCHITECTURE.md only — no plugin code changed)
