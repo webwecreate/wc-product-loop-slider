@@ -141,7 +141,8 @@
 		}
 
 		window.elementorFrontend.hooks.addAction(
-			'frontend/element_ready/global',
+			'frontend/element_ready/wcpls-product-slider.default',
+			/*'frontend/element_ready/global',*/
 			function ( $element ) {
 				if ( typeof $element === 'undefined' || ! $element[0] ) {
 					return;
@@ -153,15 +154,15 @@
 						delete el.swiper;
 					}
 
-					const swiper = createSlider( el );
+					/*const swiper = createSlider( el );
 
 					// Force recalculate after Elementor finishes layout
 					if ( swiper ) {
 						requestAnimationFrame( function () {
-							swiper.update();        // ← เพิ่ม
-							swiper.updateSize();    // ← เพิ่ม
+							swiper.update();       
+							swiper.updateSize();    
 						} );
-					}
+					}*/
 				} );
 			}
 		);
