@@ -35,6 +35,14 @@ class WCPLS_Slider {
 	 * Hook: woocommerce_before_shop_loop_item_title (priority 10)
 	 */
 	public function hook_into_loop(): void {
+		
+		// [v0.3.2 short-term fix]
+		// เมื่อ Elementor active → ให้ WCPLS_Widget จัดการแทน
+		// ใน v0.4.0 (Part 8) จะเปลี่ยนเป็น settings option
+		if ( class_exists( 'WCPLS_Elementor' ) && WCPLS_Elementor::is_elementor_active() ) {
+			return;
+		}
+
 		// Remove the default thumbnail output.
 		remove_action(
 			'woocommerce_before_shop_loop_item_title',
