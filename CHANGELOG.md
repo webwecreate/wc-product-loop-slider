@@ -7,6 +7,41 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.3.1] — 2026-04-08
+
+### Added
+
+* `includes/widgets/class-wcpls-widget.php` — `WCPLS_Widget` class with:
+  + `get_name()`       → `wcpls-product-slider`
+  + `get_title()`      → `Product Slider`
+  + `get_icon()`       → `eicon-media-carousel`
+  + `get_categories()` → `['woocommerce-elements']`
+  + `register_controls()` — 3 controls:
+    - `image_size`      : SELECT (thumbnail / medium / large / full; default: thumbnail)
+    - `show_pagination` : SWITCHER (default: yes)
+    - `show_navigation` : SWITCHER (default: off)
+  + `render()` — resolves `product` post type via `get_the_ID()`;
+    reuses `WCPLS_Slider::get_image_ids()`; loads `elementor-slider.php`;
+    falls back gracefully when not a product or no images found;
+    shows editor hint in Elementor edit mode
+  + `locate_template()` — private; supports theme override at
+    `{theme}/wc-product-loop-slider/{file}` before plugin bundled path
+
+* `templates/elementor-slider.php` — Swiper-compatible HTML template:
+  - Accepts `$image_ids`, `$product_id`, `$settings` (via `extract`)
+  - HTML structure mirrors `loop-slider.php`:
+    `.wcpls-slider-wrapper` > `.wcpls-slider.swiper` > `.swiper-wrapper` > `.swiper-slide`
+  - Uses `$settings['image_size']` (no hardcode); filterable via `wcpls_elementor_image_size`
+  - `.swiper-pagination` rendered when `show_pagination = yes` AND `slide_count > 1`
+  - `swiper-button-prev` / `swiper-button-next` rendered when `show_navigation = yes` AND `slide_count > 1`
+  - All images use `loading="lazy"` + `decoding="async"` + `draggable="false"`
+  - Action hooks: `wcpls_before_slider`, `wcpls_after_slider`,
+    `wcpls_before_slider_inner`, `wcpls_after_slider_inner`,
+    `wcpls_before_slide`, `wcpls_after_slide`
+  - Unique `id` per instance: `wcpls-slider-{$product_id}`
+
+---
+
 ## [0.3.0] — 2026-04-08
 
 ### Added
