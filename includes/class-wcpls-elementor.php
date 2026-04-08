@@ -101,7 +101,7 @@ class WCPLS_Elementor {
 		require_once WCPLS_PATH . 'includes/widgets/class-wcpls-widget.php';
 		$widgets_manager->register( new WCPLS_Widget() );
 	}
-	
+
 	// -------------------------------------------------------------------------
 	// Editor assets
 	// -------------------------------------------------------------------------
@@ -169,9 +169,9 @@ class WCPLS_Elementor {
 	 */
 	public function force_enqueue_assets(): void {
 
-		if ( ! self::is_elementor_built_page() ) {
+		/*if ( ! self::is_elementor_built_page() ) {
 			return;
-		}
+		}*/
 
 		wp_enqueue_style(
 			'wcpls-swiper',
