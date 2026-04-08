@@ -40,6 +40,17 @@ All notable changes to this project will be documented in this file.
     `wcpls_before_slide`, `wcpls_after_slide`
   - Unique `id` per instance: `wcpls-slider-{$product_id}`
 
+### Fixed
+
+* `includes/widgets/class-wcpls-widget.php` + `templates/elementor-slider.php`:
+  - ลบ `Plugin Name:` ออกจาก docblock — WordPress scan ทุกไฟล์ใน plugin
+    folder ทำให้ header conflict → "The plugin does not have a valid header"
+
+* `includes/class-wcpls-elementor.php`:
+  - เพิ่ม `register_widgets( \Elementor\Widgets_Manager $widgets_manager )` method
+  - เพิ่ม hook `elementor/widgets/register` ใน constructor
+    — widget ไม่แสดงใน Elementor panel เลยก่อนแก้
+
 ---
 
 ## [0.3.0] — 2026-04-08

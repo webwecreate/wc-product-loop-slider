@@ -221,6 +221,7 @@ add_action('wp_enqueue_scripts', [$this, 'force_enqueue_assets']);
 | `wcpls_autoplay_delay` | int | `3000` | Autoplay delay (ms) |
 | `wcpls_image_size` | string | `woocommerce_thumbnail` | WordPress image size |
 | `wcpls_aspect_ratio` | string | `1/1` | CSS aspect-ratio |
+| `wcpls_slider_mode` | string | `smart` | `smart` = auto-detect / `wc` = WC Hook only / `elementor` = Widget only |
 
 ---
 
@@ -237,8 +238,9 @@ add_action('wp_enqueue_scripts', [$this, 'force_enqueue_assets']);
 | `0.2.2` | ✅ Done | PC hover arrows + mobile dots UX + dot position fix (Part 6) |
 | `0.2.3` | ✅ Done | Fix missing wrapper div in template (Part 6) |
 | `0.2.4` | ✅ Done | Fix prev-next button styling (Part 6) |
-| `0.3.0` | 🔄 Part 7a | Elementor assets + hook — `class-wcpls-elementor.php` |
-| `0.3.1` | 📋 Part 7b | Elementor Widget — `class-wcpls-widget.php` + `elementor-slider.php` |
+| `0.3.0` | ✅ Done | Elementor assets + hook — `class-wcpls-elementor.php` |
+| `0.3.1` | ✅ Done | Elementor Widget — widget.php + elementor-slider.php + bug fixes |
+| `0.3.2` | ⏳ Testing | Elementor Loop Grid fix — wcpls-front.js + slider guard |
 | `0.4.0` | 📋 Part 8 | Settings page (WP Admin) — `class-wcpls-settings.php` |
 | `1.0.0` | 📋 Planned | Stable release |
 
@@ -293,6 +295,8 @@ type: feat | fix | style | refactor | docs | chore
 
 | Date | Decision | Reason |
 |---|---|---|
+| 2026-04-09 | WCPLS_Slider bail เมื่อ Elementor active (short-term fix) | ป้องกัน double render กับ WCPLS_Widget; long-term จะใช้ wcpls_slider_mode setting ใน v0.4.0 |
+| 2026-04-09 | reinit Swiper ผ่าน elementorFrontend.hooks frontend/element_ready/global | Elementor Loop Builder destroy Swiper instance ตอน re-render DOM หลัง publish |
 | 2026-04-08 | แบ่ง Elementor compatibility เป็น Part 7a + 7b | 7a = assets/hook (ง่าย), 7b = widget (ซับซ้อนกว่า) แยกเพื่อ debug ง่าย |
 | 2026-04-08 | WCPLS_Widget reuse `get_image_ids()` จาก WCPLS_Slider | ไม่ duplicate code |
 | 2026-04-08 | Settings page เลื่อนเป็น v0.4.0 | Elementor compatibility สำคัญกว่าและควรทำก่อน |
