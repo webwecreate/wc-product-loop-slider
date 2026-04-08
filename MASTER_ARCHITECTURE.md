@@ -26,8 +26,8 @@
 ```
 1. บอก Claude: "อ่าน Master Architecture ก่อน"
 2. fetch ไฟล์เหล่านี้ก่อนเริ่มงานทุกครั้ง:
-   https://github.com/webwecreate/wc-product-loop-slider/blob/main/MASTER_ARCHITECTURE.md
-   https://github.com/webwecreate/wc-product-loop-slider/blob/main/CHANGELOG.md
+   https://api.github.com/repos/webwecreate/wc-product-loop-slider/contents/MASTER_ARCHITECTURE.md
+   https://api.github.com/repos/webwecreate/wc-product-loop-slider/contents/CHANGELOG.md
 3. ระบุว่าจะทำงานไฟล์ไหน (ดู Section 9: Chat Splitting Guide)
 4. ตรวจสอบ version ปัจจุบันจาก Master
 5. 🔴 ถ้าจะแก้ไขไฟล์ที่มีอยู่ → บอก user ว่าต้องการไฟล์ไหน → รอรับก่อนเริ่ม
