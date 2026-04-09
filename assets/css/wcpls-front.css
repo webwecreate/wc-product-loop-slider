@@ -2,9 +2,9 @@
  * WC Product Loop Slider — Frontend Styles
  *
  * @package    WC_Product_Loop_Slider
- * @version    0.2.2
+ * @version    0.3.2
  * @since      0.1.2
- * @last-updated 2026-04-07
+ * @last-updated 2026-04-09
  *
  * Table of Contents
  * -----------------
@@ -50,6 +50,7 @@
 /**
  * Wrapper that replaces the default WooCommerce thumbnail anchor.
  * Sits inside .product — flex / grid child.
+ * Must have position: relative so the absolute .swiper fills it correctly.
  */
 .wcpls-slider-wrapper {
     position: relative;
@@ -63,8 +64,21 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-/* Swiper root inside the wrapper */
+/**
+ * Swiper root — positioned absolute to remove it from normal flow.
+ *
+ * Why absolute?
+ * Elementor Loop Item uses a Flexbox container. Without this,
+ * .swiper-wrapper (display:flex) expands to fit all slides side-by-side,
+ * causing the parent Flexbox chain to grow to an absurdly large width
+ * (slides × slideWidth), which makes Swiper miscalculate slide widths.
+ * Taking .swiper out of flow with position:absolute breaks the cycle:
+ * the wrapper is sized by its parent, and Swiper fills the wrapper.
+ */
 .wcpls-slider-wrapper .swiper {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
 }
@@ -162,8 +176,8 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border-color:transparent;
-    padding:5px;
+    border-color: transparent;
+    padding: 5px;
 
     /* Hidden by default; revealed on wrapper hover */
     opacity: 0;

@@ -295,6 +295,7 @@ type: feat | fix | style | refactor | docs | chore
 
 | Date | Decision | Reason |
 |---|---|---|
+| 2026-04-09 | `.swiper` ใช้ `position: absolute` แก้ Flexbox overflow | Flexbox parent ขยายตาม .swiper-wrapper flex content → circular dependency → แก้โดยเอา .swiper ออกจาก normal flow |
 | 2026-04-09 | WCPLS_Slider bail เมื่อ Elementor active (short-term fix) | ป้องกัน double render กับ WCPLS_Widget; long-term จะใช้ wcpls_slider_mode setting ใน v0.4.0 |
 | 2026-04-09 | reinit Swiper ผ่าน elementorFrontend.hooks frontend/element_ready/global | Elementor Loop Builder destroy Swiper instance ตอน re-render DOM หลัง publish |
 | 2026-04-08 | แบ่ง Elementor compatibility เป็น Part 7a + 7b | 7a = assets/hook (ง่าย), 7b = widget (ซับซ้อนกว่า) แยกเพื่อ debug ง่าย |

@@ -2,7 +2,7 @@
  * wcpls-front.js
  *
  * @package     WC_Product_Loop_Slider
- * @version     0.3.0
+ * @version     0.3.2
  * @since       0.1.2
  * @license     GPL-2.0-or-later
  *
@@ -24,7 +24,7 @@
 	   1. Config / constants
 	   wcplsConfig is injected by wp_localize_script in class-wcpls-assets.php
 	========================================================================= */
-	const config = window.wcplsConfig || {};
+	const config          = window.wcplsConfig || {};
 	const SLIDER_SELECTOR = '.wcpls-slider';
 
 	/* =========================================================================
@@ -53,11 +53,15 @@
 			spaceBetween:  0,
 
 			// ── Touch / swipe ─────────────────────────────────────────────────
+			// touchStartPreventDefault: false  → lets vertical page-scroll work normally
+			// preventClicks: true              → cancels click if pointer moved (swipe)
+			// preventClicksPropagation: true   → stops click bubbling up to <a> wrapper
 			touchStartPreventDefault:  false,
 			preventClicks:             true,
 			preventClicksPropagation:  true,
 
 			// ── Pagination dots ───────────────────────────────────────────────
+			// Shown only when > 1 slide AND not disabled by PHP config
 			pagination: ( enableLoop && config.pagination !== false )
 				? {
 					el:        el.querySelector( '.swiper-pagination' ),
@@ -66,6 +70,8 @@
 				: false,
 
 			// ── Navigation arrows ─────────────────────────────────────────────
+			// Always enabled for multi-slide — CSS controls show/hide on hover.
+			// On mobile (no hover), arrows stay hidden via CSS opacity: 0.
 			navigation: enableLoop
 				? {
 					nextEl: el.querySelector( '.swiper-button-next' ),
@@ -74,6 +80,7 @@
 				: false,
 
 			// ── Autoplay ──────────────────────────────────────────────────────
+			// Off by default — wired to wcplsConfig.autoplay (v0.4.0 settings)
 			autoplay: config.autoplay
 				? {
 					delay:                config.autoplayDelay || 3000,
@@ -91,6 +98,8 @@
 	/* =========================================================================
 	   3. Init on DOMContentLoaded
 	   Query all .wcpls-slider elements and initialise each one independently.
+	   Each instance is isolated → no conflict with other Swiper instances
+	   elsewhere on the same page.
 	========================================================================= */
 	function initAllSliders() {
 		document.querySelectorAll( SLIDER_SELECTOR ).forEach( function ( el ) {
@@ -106,6 +115,8 @@
 	   - WooCommerce AJAX fragments (cart update, mini-cart refresh)
 	   - Infinite scroll / Load More plugins
 	   - Custom event 'wcpls_reinit' for theme/plugin developers
+	   createSlider() guards against double-init via el.swiper check,
+	   so calling reinitNewSliders() repeatedly is safe.
 	========================================================================= */
 	function reinitNewSliders() {
 		document.querySelectorAll( SLIDER_SELECTOR ).forEach( function ( el ) {
@@ -113,7 +124,7 @@
 		} );
 	}
 
-	// WooCommerce AJAX events
+	// WooCommerce AJAX events (requires jQuery — already bundled with WC)
 	if ( typeof jQuery !== 'undefined' ) {
 		jQuery( document.body ).on(
 			'wc_fragments_loaded wc_fragments_refreshed wcpls_reinit',
@@ -121,14 +132,16 @@
 		);
 	}
 
-	// Public API
+	// Public API — allows themes/plugins to trigger re-init manually:
+	// window.wcplsReinit()
 	window.wcplsReinit = reinitNewSliders;
 
 	/* =========================================================================
 	   5. Elementor Loop Grid compatibility
-	   Elementor Loop Builder re-renders DOM after initial load →
-	   Swiper instances are destroyed. Re-init after each element renders.
-	   Uses elementorFrontend.hooks (Elementor Pro frontend API).
+	   Elementor Loop Builder re-renders DOM after initial load.
+	   Hook into element_ready so Swiper re-inits after each Loop Item renders.
+	   CSS fix (position:absolute on .swiper) handles the Flexbox width issue,
+	   so no timing hacks are needed here.
 	========================================================================= */
 	function initElementorHooks() {
 		if ( typeof window.elementorFrontend === 'undefined' ) {
@@ -136,13 +149,13 @@
 		}
 
 		window.elementorFrontend.hooks.addAction(
-			'frontend/element_ready/global',
+			'frontend/element_ready/wcpls-product-slider.default',
 			function ( $element ) {
-				if ( typeof $element === 'undefined' || ! $element[0] ) {
+				if ( typeof $element === 'undefined' || ! $element[ 0 ] ) {
 					return;
 				}
 
-				$element[0].querySelectorAll( SLIDER_SELECTOR ).forEach( function ( el ) {
+				$element[ 0 ].querySelectorAll( SLIDER_SELECTOR ).forEach( function ( el ) {
 					// Destroy stale instance before re-init
 					if ( el.swiper ) {
 						el.swiper.destroy( true, true );
