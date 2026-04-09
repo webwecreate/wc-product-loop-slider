@@ -237,8 +237,9 @@ add_action('wp_enqueue_scripts', [$this, 'force_enqueue_assets']);
 | `0.2.2` | ✅ Done | PC hover arrows + mobile dots UX + dot position fix (Part 6) |
 | `0.2.3` | ✅ Done | Fix missing wrapper div in template (Part 6) |
 | `0.2.4` | ✅ Done | Fix prev-next button styling (Part 6) |
-| `0.3.0` | 🔄 Part 7a | Elementor assets + hook — `class-wcpls-elementor.php` |
-| `0.3.1` | 📋 Part 7b | Elementor Widget — `class-wcpls-widget.php` + `elementor-slider.php` |
+| `0.3.0` | ✅ Done | Elementor assets + hook — `class-wcpls-elementor.php` |
+| `0.3.1` | ✅ Done| Elementor Widget — `class-wcpls-widget.php` + `elementor-slider.php` |
+| `0.3.2` | ✅ Done | Fix Swiper width overflow on Elementor Flexbox — CSS position:absolute |
 | `0.4.0` | 📋 Part 8 | Settings page (WP Admin) — `class-wcpls-settings.php` |
 | `1.0.0` | 📋 Planned | Stable release |
 
@@ -293,6 +294,7 @@ type: feat | fix | style | refactor | docs | chore
 
 | Date | Decision | Reason |
 |---|---|---|
+| 2026-04-09 | `.swiper` ใช้ `position: absolute` แก้ Flexbox overflow | Flexbox parent ขยายตาม .swiper-wrapper flex content → circular dependency → แก้โดยเอา .swiper ออกจาก normal flow |
 | 2026-04-08 | แบ่ง Elementor compatibility เป็น Part 7a + 7b | 7a = assets/hook (ง่าย), 7b = widget (ซับซ้อนกว่า) แยกเพื่อ debug ง่าย |
 | 2026-04-08 | WCPLS_Widget reuse `get_image_ids()` จาก WCPLS_Slider | ไม่ duplicate code |
 | 2026-04-08 | Settings page เลื่อนเป็น v0.4.0 | Elementor compatibility สำคัญกว่าและควรทำก่อน |

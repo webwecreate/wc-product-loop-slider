@@ -6,6 +6,31 @@ All notable changes to this project will be documented in this file.
 ห้ามเขียนทับ — ให้เพิ่มบันทึกใหม่ด้านบนเสมอ
 
 ---
+## [0.3.2] — 2026-04-09
+
+### Fixed
+
+* `assets/css/wcpls-front.css` (0.2.2 → 0.3.2):
+  - เปลี่ยน `.wcpls-slider-wrapper .swiper` จาก static เป็น `position: absolute`
+    แก้ปัญหา Swiper width overflow บน Elementor Flexbox container:
+    `.swiper-wrapper` (display:flex) ขยาย parent chain จนได้ width = 3.35544e+07px
+    การใช้ position:absolute เอา .swiper ออกจาก normal flow
+    ทำให้ parent Flexbox ไม่ขยายตาม Swiper content อีกต่อไป
+    รองรับทั้ง CSS Grid และ Flexbox container ใน Elementor Loop Item
+
+* `assets/js/wcpls-front.js` (0.3.0 → 0.3.2):
+  - ลบ `observer/observeParents` ออก (ไม่จำเป็นหลัง CSS fix)
+  - ลบ debug console.log + debug code ทั้งหมด
+  - Section 5: restore `createSlider(el)` call ที่หายไประหว่าง debug
+  - cleanup commented-out code ทั้งหมด
+
+### Notes
+
+* Root cause: Flexbox circular dependency —
+  Swiper flex layout ขยาย parent → parent ขยาย → Swiper อ่านค่าผิด → วนซ้ำ
+* CSS Grid ทำงานได้เพราะ `grid-template-columns` บังคับ width ไว้ก่อน
+* Solution: `position: absolute` ตัด circular dependency ได้ทันที
+---
 
 ## [0.3.1] — 2026-04-08
 
