@@ -58,10 +58,9 @@
     width: 100%;
     aspect-ratio: var(--wcpls-aspect-ratio);
     overflow: hidden;
-    /* Contain absolute-positioned children (pagination, arrows) */
     isolation: isolate;
-    /* Prevent tap highlight on mobile */
     -webkit-tap-highlight-color: transparent;
+	min-height: 300px;
 }
 
 /**
