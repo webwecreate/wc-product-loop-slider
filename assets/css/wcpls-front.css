@@ -125,7 +125,7 @@
  */
 .wcpls-slider-wrapper .swiper-pagination {
     position: absolute;
-    bottom: var(--wcpls-dot-bottom);
+    bottom: var(--wcpls-dot-bottom) !important;
     left: 0;
     right: 0;
     z-index: 10;
