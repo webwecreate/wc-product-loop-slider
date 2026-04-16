@@ -7,6 +7,23 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.3.4] — 2026-04-16
+
+### Added
+
+* `includes/widgets/class-wcpls-widget.php` (0.3.1 → 0.3.4):
+  - เพิ่ม `link` control (URL type) พร้อม dynamic tag support
+    ใน Loop Item ใช้ dynamic tag "Post URL" เพื่อ link ไป product อัตโนมัติ
+    รองรับ is_external (target="_blank") และ nofollow
+  - เพิ่ม `woocommerce_thumbnail` เป็น default image size option
+
+* `templates/elementor-slider.php` (0.3.1 → 0.3.4):
+  - ห่อ `.wcpls-slider-wrapper` ด้วย `<a>` เมื่อมีค่า `link.url`
+  - รองรับ `is_external` และ `nofollow` attributes
+  - ไม่มี link → render แบบเดิม ไม่มี `<a>` tag
+
+---
+
 ## [0.3.3] — 2026-04-16
 
 ### Fixed
