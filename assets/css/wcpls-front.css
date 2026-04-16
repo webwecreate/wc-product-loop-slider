@@ -2,9 +2,9 @@
  * WC Product Loop Slider — Frontend Styles
  *
  * @package    WC_Product_Loop_Slider
- * @version    0.3.2
+ * @version    0.3.3
  * @since      0.1.2
- * @last-updated 2026-04-09
+ * @last-updated 2026-04-16
  *
  * Table of Contents
  * -----------------
@@ -14,6 +14,7 @@
  * 4. Pagination Dots
  * 5. Navigation Arrows (hover)
  * 6. Accessibility & Reduced Motion
+ * 7. Elementor Compatibility
  */
 
 /* ==========================================================================
@@ -23,6 +24,12 @@
 :root {
     /* Aspect ratio */
     --wcpls-aspect-ratio: 1 / 1;
+
+    /* Minimum height fallback — used when aspect-ratio has not resolved yet
+       (e.g. Elementor Flexbox container on mobile before layout is painted).
+       Override this in your child theme if your product images use a
+       different aspect ratio. */
+    --wcpls-min-height: 200px;
 
     /* Pagination */
     --wcpls-dot-size:           8px;
@@ -57,10 +64,13 @@
     display: block;
     width: 100%;
     aspect-ratio: var(--wcpls-aspect-ratio);
+    /* Fallback height for when aspect-ratio has not resolved yet */
+    min-height: var(--wcpls-min-height);
     overflow: hidden;
+    /* Contain absolute-positioned children (pagination, arrows) */
     isolation: isolate;
+    /* Prevent tap highlight on mobile */
     -webkit-tap-highlight-color: transparent;
-	min-height: 300px;
 }
 
 /**
@@ -246,4 +256,24 @@
 .wcpls-slider-wrapper .swiper-pagination-bullet:focus-visible {
     outline: 2px solid var(--wcpls-dot-color-active);
     outline-offset: 2px;
+}
+
+/* ==========================================================================
+   7. Elementor Compatibility
+   ========================================================================== */
+
+/**
+ * Prevent the WCPLS widget from stretching to the full height of the
+ * Elementor Loop Grid row when align-items: stretch is active.
+ *
+ * Problem: Elementor sets height: 100% on .elementor-widget-container
+ * inside flex containers. When the grid row is taller than a single
+ * product card, the widget container inherits the full row height,
+ * pushing the footer calculation off by thousands of pixels.
+ *
+ * Solution: align-self: flex-start prevents the widget from stretching
+ * beyond its natural content height, keeping the grid row height correct.
+ */
+.elementor-widget-wcpls-product-slider {
+    align-self: flex-start;
 }

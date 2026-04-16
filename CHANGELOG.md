@@ -6,6 +6,28 @@ All notable changes to this project will be documented in this file.
 ห้ามเขียนทับ — ให้เพิ่มบันทึกใหม่ด้านบนเสมอ
 
 ---
+
+## [0.3.3] — 2026-04-16
+
+### Fixed
+
+* `wc-product-loop-slider.php` (0.1.1 → 0.3.3):
+  - อัปเดต `Version` header และ `WCPLS_VERSION` constant เป็น `0.3.3`
+  - เพิ่ม HPOS compatibility declaration via
+    `FeaturesUtil::declare_compatibility( 'custom_order_tables', true )`
+    แก้ WooCommerce admin warning "incompatible plugin detected"
+    (plugin ไม่ได้ใช้ orders จึง declare compatible ได้ทันที)
+
+* `assets/css/wcpls-front.css` (0.3.2 → 0.3.3):
+  - เพิ่ม `--wcpls-min-height: 200px` CSS variable ใน Section 1
+    เป็น fallback height เมื่อ aspect-ratio ยังไม่ resolve บน mobile
+  - เปลี่ยน `min-height: 300px` hardcode เป็น `min-height: var(--wcpls-min-height)`
+  - เพิ่ม Section 7 — Elementor Compatibility:
+    `align-self: flex-start` บน `.elementor-widget-wcpls-product-slider`
+    แก้ปัญหา widget ยืด height เต็ม grid row ทำให้ footer คำนวณผิด
+    และข้อความ product ซ้อนทับ slider บน mobile
+
+---
 ## [0.3.2] — 2026-04-09
 
 ### Fixed
