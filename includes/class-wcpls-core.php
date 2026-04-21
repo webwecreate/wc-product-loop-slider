@@ -6,7 +6,7 @@
  * and registers top-level hooks.
  *
  * @package WC_Product_Loop_Slider
- * @version 0.3.0
+ * @version 0.3.6
  * @since   0.1.0
  */
 
@@ -52,6 +52,7 @@ final class WCPLS_Core {
 	 */
 	private function __construct() {
 		$this->check_woocommerce();
+		$this->check_webwecreate_swiper(); // [0.3.6]
 		$this->load_dependencies();
 	}
 
@@ -136,6 +137,47 @@ final class WCPLS_Core {
 			),
 			'<strong>WC Product Loop Slider</strong>',
 			'<strong>WooCommerce</strong>'
+		);
+
+		printf(
+			'<div class="notice notice-error"><p>%s</p></div>',
+			wp_kses( $message, [ 'strong' => [] ] )
+		);
+	}
+
+	// ---------------------------------------------------------------------------
+	// WebWeCreate Swiper Check [0.3.6]
+	// ---------------------------------------------------------------------------
+
+	/**
+	 * Display an admin notice when webwecreate-swiper is not active.
+	 *
+	 * @since  0.3.6
+	 * @return void
+	 */
+	public function check_webwecreate_swiper(): void {
+		if ( defined( 'WWCS_HANDLE_JS' ) ) {
+			return;
+		}
+
+		add_action( 'admin_notices', [ $this, 'admin_notice_missing_webwecreate_swiper' ] );
+	}
+
+	/**
+	 * Output the "webwecreate-swiper missing" admin notice HTML.
+	 *
+	 * @since  0.3.6
+	 * @return void
+	 */
+	public function admin_notice_missing_webwecreate_swiper(): void {
+		$message = sprintf(
+			/* translators: 1: Plugin name, 2: WebWeCreate Swiper */
+			esc_html__(
+				'%1$s requires %2$s to be installed and active.',
+				'wc-product-loop-slider'
+			),
+			'<strong>WC Product Loop Slider</strong>',
+			'<strong>WebWeCreate Swiper</strong>'
 		);
 
 		printf(

@@ -7,6 +7,33 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.3.6] — 2026-04-21
+
+### Changed
+
+* `includes/class-wcpls-core.php` (0.3.0 → 0.3.6):
+  - เพิ่ม `check_webwecreate_swiper()` ใน constructor (เรียกหลัง `check_woocommerce()`)
+  - เพิ่ม `admin_notice_missing_webwecreate_swiper()` — error notice เมื่อ
+    `webwecreate-swiper` ไม่ได้ active; ตรวจผ่าน `defined('WWCS_HANDLE_JS')`
+  - Pattern เดียวกับ `check_woocommerce()` ที่มีอยู่เดิม
+
+* `includes/class-wcpls-assets.php` (0.3.5 → 0.3.6):
+  - ลบ fallback bundle ออกทั้งหมด — `webwecreate-swiper` เป็น hard dependency
+  - `enqueue()` bail early ถ้า `WWCS_HANDLE_CSS` / `WWCS_HANDLE_JS` ไม่ถูก define
+  - `wcpls-front.css` + `wcpls-front.js` ใช้ `WWCS_HANDLE_CSS` / `WWCS_HANDLE_JS`
+    โดยตรงแทน `$swiper_handle_*` variable
+  - อัปเดต docblock — ลบ Fallback section ออก
+
+* `wc-product-loop-slider.php` (0.3.5 → 0.3.6):
+  - อัปเดต `Version` header และ `WCPLS_VERSION` constant เป็น `0.3.6`
+
+### Notes
+
+* `assets/vendor/swiper/` folder สามารถลบออกจาก repo ได้แล้ว
+  เนื่องจาก Swiper ถูกจัดการทั้งหมดโดย `webwecreate-swiper` plugin
+
+---
+
 ## [0.3.5] — 2026-04-21
 
 ### Changed

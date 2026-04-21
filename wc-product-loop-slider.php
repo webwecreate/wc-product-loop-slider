@@ -3,7 +3,7 @@
  * Plugin Name:       WC Product Loop Slider
  * Plugin URI:        https://github.com/webwecreate/wc-product-loop-slider
  * Description:       Per-product image gallery slider for WooCommerce shop and archive pages
- * Version:           0.3.5
+ * Version:           0.3.6
  * Requires at least: 6.0
  * Requires PHP:      8.0
  * Author:            WebWeCreate
@@ -17,7 +17,7 @@
  * WC tested up to:      9.x
  *
  * @package WC_Product_Loop_Slider
- * @version 0.3.5
+ * @version 0.3.6
  * @since   0.1.0
  */
 
@@ -27,7 +27,7 @@ defined( 'ABSPATH' ) || exit;
 // Constants
 // ---------------------------------------------------------------------------
 
-define( 'WCPLS_VERSION', '0.3.5' );
+define( 'WCPLS_VERSION', '0.3.6' );
 define( 'WCPLS_FILE',    __FILE__ );
 define( 'WCPLS_PATH',    plugin_dir_path( __FILE__ ) );
 define( 'WCPLS_URL',     plugin_dir_url( __FILE__ ) );
