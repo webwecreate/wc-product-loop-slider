@@ -7,6 +7,24 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.3.5] — 2026-04-21
+
+### Changed
+
+* `includes/class-wcpls-assets.php` (0.3.0 → 0.3.5):
+  - Migrate Swiper loading จาก bundle เอง → ใช้ `webwecreate-swiper` plugin
+  - Primary: ตรวจ `defined('WWCS_HANDLE_CSS')` + `defined('WWCS_HANDLE_JS')`
+    → `wp_enqueue_style( WWCS_HANDLE_CSS )` + `wp_enqueue_script( WWCS_HANDLE_JS )`
+  - Fallback: ถ้า `webwecreate-swiper` ไม่ได้ active → enqueue bundle เดิมจาก
+    `assets/vendor/swiper/` ด้วย handle `wcpls-swiper` ตามเดิม
+  - `wcpls-front.css` + `wcpls-front.js` dependencies อัปเดตตาม handle ที่ใช้จริง
+    (`$swiper_handle_css` / `$swiper_handle_js`) แทน hardcode `wcpls-swiper`
+
+* `wc-product-loop-slider.php` (0.3.3 → 0.3.5):
+  - อัปเดต `Version` header และ `WCPLS_VERSION` constant เป็น `0.3.5`
+
+---
+
 ## [0.3.4] — 2026-04-16
 
 ### Added
