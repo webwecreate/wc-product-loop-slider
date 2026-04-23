@@ -7,6 +7,34 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.3.7] — 2026-04-21
+
+### Fixed
+
+* `includes/class-wcpls-elementor.php` (0.3.0 → 0.3.7):
+  - **404 Swiper**: `enqueue_editor_assets()` + `force_enqueue_assets()` ยังใช้
+    `WCPLS_URL . 'assets/vendor/swiper/...'` เดิม — migrate ทั้ง 2 methods
+    ให้ใช้ `WWCS_HANDLE_CSS` / `WWCS_HANDLE_JS` เหมือนกับ `class-wcpls-assets.php`
+  - เพิ่ม bail early (`defined('WWCS_HANDLE_*')` check) ใน `enqueue_editor_assets()`
+    และ `force_enqueue_assets()` เหมือน pattern ใน `class-wcpls-assets.php`
+  - **โหลดทั้ง site**: `force_enqueue_assets()` มี `is_elementor_built_page()`
+    ถูก comment out — เป็นสาเหตุที่ `wcpls-front.js` โหลดทุก Elementor page
+    และ throw `TypeError: Cannot read properties of undefined (reading 'addAction')`
+  - เพิ่ม static method `is_wcpls_page()` — รวม condition ทั้ง WC archive
+    และ Elementor-built page ไว้ที่เดียว
+  - `force_enqueue_assets()` เพิ่ม `if ( ! self::is_wcpls_page() ) return;`
+    — assets โหลดเฉพาะ shop/archive หรือ Elementor Loop Builder page เท่านั้น
+
+### Notes
+
+* `enqueue_editor_assets()` ไม่มี page-type guard โดยเจตนา —
+  ต้องทำงานใน wp-admin editor canvas เสมอ ไม่ขึ้นกับ page type
+* Root cause ของ `addAction` error: `wcpls-front.js` โหลดบน Elementor page
+  ที่ไม่ใช่ shop/archive แล้ว JS พยายาม hook `window.elementorFrontend.hooks.addAction`
+  ในขณะที่ context ยังไม่พร้อม — fix โดย restrict load condition
+
+---
+
 ## [0.3.6] — 2026-04-21
 
 ### Changed
